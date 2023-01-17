@@ -33,4 +33,12 @@ describe('Teste a função fetchProductsList', () => {
     }
   });
 
+  it('A função FetchProductsList chamada com argumento incompativel ou por instabilidade da API, deve retornar um erro com a mensagem: Algum erro ocorreu, recarregue a página e tente novamente',  async () => {
+    try {
+      await fetchProductsList('galodoido');
+    } catch (error) {
+      expect(error).toEqual(new Error('Algum erro ocorreu, recarregue a página e tente novamente'));
+    }
+  });
+
 });
