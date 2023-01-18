@@ -19,6 +19,24 @@ const createProductImageElement = (imageSource) => {
 };
 
 /**
+ * Função responsável por calcular o preço total do carrinho.
+ */
+const priceCalc = () => {
+  const actualPrice = document.querySelector('.total-price');
+  actualPrice.innerText = localStorage.getItem('actualPrice') || 0;
+  const productsPrices = document.querySelectorAll(
+    '.cart__product__info-container .product__price .product__price__value',
+  );
+  const productsPricesArray = Array.from(productsPrices);
+  let sum = 0;
+  for (let i = 0; i < productsPricesArray.length; i += 1) {
+    sum += Number(productsPricesArray[i].innerText);
+  }
+  localStorage.setItem('actualPrice', sum);
+  actualPrice.innerText = sum;
+};
+
+/**
  * Função responsável por criar e retornar qualquer elemento.
  * @param {string} element - Nome do elemento a ser criado.
  * @param {string} className - Classe do elemento.
@@ -49,6 +67,7 @@ export const getIdFromProduct = (product) => (
 const removeCartProduct = (li, id) => {
   li.remove();
   removeCartID(id);
+  priceCalc();
 };
 
 /**
@@ -127,7 +146,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     saveCartID(id);
     const event = document.querySelector('.cart__products');
     event.appendChild(createCartProductElement(await fetchProduct(id)));
+    priceCalc();
   });
-
   return section;
 };

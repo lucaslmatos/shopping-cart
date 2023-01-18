@@ -59,6 +59,8 @@ const productsCart = () => {
     const product = createCartProductElement(cartProduct);
     cart.appendChild(product);
   });
+  const actualPrice = document.querySelector('.total-price');
+  actualPrice.innerText = localStorage.getItem('actualPrice') || 0;
 };
 
 productList();
