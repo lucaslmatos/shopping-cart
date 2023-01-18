@@ -41,7 +41,8 @@ const productList = async () => {
     for (let i = 0; i < mercadorias.length; i += 1) {
       const productsPlace = document.querySelector('.products');
       const ref = mercadorias[i];
-      productsPlace?.appendChild(createProductElement(ref));
+      const creatProduct = createProductElement(ref);
+      productsPlace?.appendChild(creatProduct);
     }
   } catch {
     errorMsg(true);
@@ -51,7 +52,7 @@ const productList = async () => {
 };
 
 const productsCart = () => {
-  const cart = document.getElementsByClassName('cart__products');
+  const cart = document.querySelector('.cart__products');
   const cartId = getSavedCartIDs();
   cartId.forEach(async (id) => {
     const cartProduct = await fetchProduct(id);
