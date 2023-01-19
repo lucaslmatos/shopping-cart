@@ -19,7 +19,7 @@ const createProductImageElement = (imageSource) => {
 };
 
 /**
- * Função responsável por calcular o preço total do carrinho.
+ * Função responsável por calcular o preço total do carrinho e salvá-lo a recarregar a página.
  */
 const priceCalc = () => {
   const actualPrice = document.querySelector('.total-price');

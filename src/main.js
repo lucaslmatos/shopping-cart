@@ -5,7 +5,7 @@ import { createProductElement,
 } from './helpers/shopFunctions';
 import { getSavedCartIDs } from './helpers/cartFunctions';
 import './style.css';
-// Início.
+
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
 const loadOn = () => {
